@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Madhu  Crackers - Products</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        .body1 {
+            margin: 0;
+            padding: 0;
+        }
+        .body2 {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            background-color: #c2185b; 
+            color: white; 
+            padding: 10px;
+            font-family: 'Vera', Arial, sans-serif;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .contact-info .phone, .contact-info .email {
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-info .phone i, .contact-info .email i {
+            margin-right: 10px;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .navbar .menu {
+            display: flex;
+            gap: 10px;
+        }
+
+        .navbar .menu a {
+            padding: 10px 20px;
+            background-color: #e91e63;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .navbar .menu a:hover {
+            background-color: #e4004cb7;
+        }
+
+        .navbar .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .navbar .logo h1 {
+            margin: 0;
+            font-size: 30px;
+            color: #e91e63;
+        }
+
+        .navbar .logo p {
+            margin: 0;
+            font-size: 12px;
+            color: #e91e63;
+        }
+
+        .navbar .cart-contact {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .navbar .cart {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .navbar .cart i {
+            font-size: 20px;
+            margin-right: 80px;
+        }
+
+        .navbar .cart span {
+            font-weight: bold;
+        }
+
+        .navbar .contact-button {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            border: 2px solid #4CAF50;
+            border-radius: 5px;
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar .contact-button i {
+            margin-right: 5px;
+        }
+
+        .navbar .contact-button:hover {
+            background-color: aliceblue;
+        }
+
+        /* Menu Toggle */
+        #menu-toggle {
+            display: none;
+        }
+
+        .menu-icon {
+            display: none;
+            cursor: pointer;
+        }
+
+        .menu-icon i {
+            font-size: 24px;
+            color: #e91e63;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 1024px) {
+            .contact-info {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .contact-info .phone, .contact-info .email {
+                margin: 0;
+            }
+            .contact-info .phone {
+                margin-bottom: 10px;
+            }
+            .contact-info .email {
+                margin-bottom: 10px;
+            }
+            .navbar .cart i {
+                margin-right: 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .menu-icon {
+                display: block;
+            }
+            .navbar .menu {
+                display: none;
+                flex-direction: column;
+                gap: 5px;
+                width: 100%;
+            }
+            #menu-toggle:checked + .menu-icon + .menu {
+                display: flex;
+            }
+            .navbar .menu a {
+                width: 100%;
+                text-align: center;
+                padding: 10px;
+                border-radius: 0;
+            }
+            .navbar .cart {
+                margin-right: 0;
+            }
+            .navbar .contact-button {
+                margin-top: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar .logo h1 {
+                font-size: 24px;
+            }
+            .navbar .logo p {
+                font-size: 10px;
+            }
+            .navbar .menu a {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+            .navbar .cart i {
+                font-size: 18px;
+                margin-right: 5px;
+            }
+        }
+        
+        .container {
+            max-width: 1200px;
+            padding: 20px;
+            width: 100%;
+        }
+        
+        .welcome {
+            text-align: center;
+        }
+        
+        .welcome h1 {
+            color: red;
+        }
+        
+        .content {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .content img {
+            width: 30%;
+            height: auto;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+        
+        .content .text {
+            width: 45%;
+            line-height: 1.6;
+        }
+        
+        .features {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        
+        .feature {
+            text-align: center;
+            width: 30%;
+            margin-bottom: 20px;
+        }
+        
+        .feature img {
+            width: 100px;
+            height: 100px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+                align-items: center;
+            }
+            .content img {
+                width: 90%;
+                margin-right: 5;
+                margin-bottom: 20px;
+            }
+            .content .text {
+                width: 90%;
+            }
+            .features {
+                flex-direction: column;
+                align-items: center;
+            }
+            .feature {
+                width: 80%;
+            }
+        }
+        
+        .container1 {
+            max-width: 1700px;
+            padding: 100px;
+            width: 90%;
+            background-color: rgb(209, 38, 38);
+            justify-content: center;
+        }
+
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .product-card {
+            background-color: #fff;
+            color: #000;
+            border-radius: 10px;
+            padding: 20px; /* Adjusted padding */
+            width: calc(20% - 20px); /* Adjusted width to account for gaps */
+            max-width: 250px; /* Maximum width for product cards */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        .product-card img {
+            width: 90px;
+            height: 90px;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 1024px) {
+            .product-card {
+                width: calc(30% - 20px); /* Adjust for medium-sized screens */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .product-card {
+                width: calc(45% - 20px); /* Adjust for small screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container1 {
+                width: 70% !important; /* Set container width to 70% for mobile */
+                margin: 100 auto !important; /* Center the container */
+            }
+
+            .product-card {
+                width: 100%; /* Full width for mobile screens */
+                margin-left: 50px; /* Add left margin to move the card to the right */
+            }
+
+
+
+        }
+        footer{
+          background-color: #c2185b;
+          text-align: center;
+        padding: 10px;
+        width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="body1">
+        <div class="contact-info">
+            <div class="phone">
+                <i class="fa fa-phone"></i> 94896 88106
+            </div>
+            <div class="email">
+                <i class="fa fa-envelope"></i> madhucrackers@gmail.com
+            </div>
+        </div>
+        <div class="navbar">
+            <div class="logo">
+                <h1>MADHU CRACKERS</h1>
+                <p>Best Quality Fireworks Online @ Affordable prices</p>
+            </div>
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="menu-icon"><i class="fa fa-bars"></i></label>
+            <div class="menu">
+                <a href="home.html">HOME</a>
+                <a href="retailprice.html">RETAIL PRICE</a>
+                
+                <a href="about us.html">ABOUT US</a>
+                <a href="contact us.html">CONTACT US</a>
+            </div>
+            <div class="cart-contact">
+                <div class="cart">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span>NET TOTAL : ₹ 0.00</span>
+                </div>
+                <a href="#" class="contact-button">
+                    <i class="fa fa-phone"></i> CONTACTS
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="body2">
+        <div class="container">
+            <div class="welcome">
+                <h1>Welcome To Madhu Crackers</h1>
+            </div>
+            <div class="content">
+                <img src="image/shopimage.jpg" alt="Crackers Image">
+                <div class="text">
+                    <p>Madhu crackers is the leading supplier of crackers & fancy crackers items. Firecrackers have always been an integral part of Indian culture and tradition. Be it a festival, a wedding, reunion or any other special occasion, it is in our hearts to celebrate it in the glory of lights. Our aim is to provide the excellent services and true value for money. Our efficiency in business has set benchmarks among our competitors in the line of quality. We offer high quality crackers and gift boxes to you at very low cost.</p>
+                    <p>With the term "very low cost", We mean that we are pricing each individual item with typical Sivakasi wholesale cost. The products quality are 100% good and delivered safely.</p>
+                </div>
+            </div>
+            <div class="features">
+                <div class="feature">
+                    <img src="image/geniunie_image.png" alt="Genuine Price">
+                    <h3>Genuine Price</h3>
+                    <p>Quality products at economic price is the main motto for us.</p>
+                </div>
+                <div class="feature">
+                    <img src="image/best quality image.png" alt="Best Quality">
+                    <h3>Best Quality</h3>
+                    <p>Quality & innovation are the key behind our success.</p>
+                </div>
+                <div class="feature">
+                    <img src="image/safe to use.png" alt="Safe to Use">
+                    <h3>Safe To Use</h3>
+                    <p>Crackers we offer are safe & are made from fine quality raw materials.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container1">
+        <div class="product-grid">
+            <div class="product-card">
+                <a href="retailprice.html"><img src="image/sound cracker image.png" alt="One sound crackers"></a>
+                <h3> Sound crackers</h3>
+                <p>We have all varieties of sound crackers like lakshmi, kuruvi, gold lakshmi etc..</p>
+            </div>
+            <div class="product-card">
+                <a href="retailprice.html"><img src="image/flower pot 3.png" alt="One sound crackers"></a>
+                <h3>Flower Pots</h3>
+                <p>We have all varieties of flower pots like ashoka, colour koti, deluxe, tri colour fountain etc..</p>
+            </div>
+            <div class="product-card">
+                <a href="retailprice.html"><img src="image/shower pots.jpeg" alt="One sound crackers"></a>
+                <h3>Fancy Shower Pots</h3>
+                <p>We have all varieties of fancy shower pots like polo, teddy, asarafi pops, peacock etc..</p>
+            </div>
+            <div class="product-card">
+                <a href="retailprice.html"><img src="image/twinkling stat.png" alt="One sound crackers"></a>
+                <h3>Twinkling Star</h3>
+                <p>We have all varieties of twinkling star like twinkling star etc..</p>
+            </div>
+            <div class="product-card">
+                <a href="retailprice.html"><img src="image/chakkar.png" alt="One sound crackers"></a>
+                <h3>Ground Chakkars & Fancy Chakkars</h3>
+                <p>We have all varieties of ground chakkars and fancy chakkars like special, deluxe, bambara etc..</p>
+            </div>
+            <div class="product-card">
+                <a href="retailprice.html"><img src="image/pencil crackers 1.jpeg" alt="One sound crackers"></a>
+                <h3>Pencil</h3>
+                <p>We have all varieties of pencil like loli pop, bat & ball, mega torch, colour smoke etc..</p>
+            </div>
+            <div class="product-card">
+                <a href="retailprice.html"><img src="image/bijili.png" alt="One sound crackers"></a>
+                <h3>Bijili Crackers</h3>
+                <p>We have all varieties of bijili crackers like red bijili, stripped bijili etc..</p>
+            </div>
+            <div class="product-card">
+                <a href="retailprice.html"><img src="image/bombs.png" alt="One sound crackers"></a>
+                <h3>Bombs</h3>
+                <p>We have all varieties of bombs like bullet bombs, atom bomb, paper bomb, digital bomb etc..</p>
+            </div>
+            <div class="product-card">
+                <a href="retailprice.html"><img src="image/kids.png" alt="One sound crackers"></a>
+                <h3>Kids Novelties</h3>
+                <p>We have all varieties of kids noveleties like cartoon, kit kat, tin tin, snake cartoons etc..</p>
+            </div>
+            <div class="product-card">
+                <a href="retailprice.html"><img src="image/rocket.png" alt="One sound crackers"></a>
+                <h3>Rockets</h3>
+                <p>We have all varieties of rocket like rocket bomn, lunik rocket, music rocket etc..</p>
+            </div>
+            <div class="product-card">
+                <a href="retailprice.html"><img src="image/aerial fancy 2.png" alt="One sound crackers"></a>
+                <h3>Aerial Fancy</h3>
+                <p>We have all varieties of aerial fancy like bingo, fancy, pipe etc..</p>
+            </div>
+            <div class="product-card">
+                <a href="retailprice.html"><img src="image/sky_repecting.png" alt="One sound crackers"></a>
+                <h3>Sky Repecting Shot</h3>
+                <p>We have all varieties of sky repecting shot like shot colour, shot multicolour, star crackling & colour etc..</p>
+            </div>
+            <div class="product-card">
+                <a href="retailprice.html"><img src="image/colour matches.png" alt="One sound crackers"></a>
+                <h3>Colour Matches</h3>
+                <p>We have all varieties of colour matches like deluxe, lamba, super deluxe, mega deluxe etc..</p>
+            </div>
+            <div class="product-card">
+                <a href="retailprice.html"><img src="image/sparklers.png" alt="One sound crackers"></a>
+                <h3>Sparklers</h3>
+                <p>We have all varieties of sparklers like electric sparklers, colour sparklers, red sparklers etc..</p>
+            </div>
+            <div class="product-card">
+                <a href="retailprice.html"><img src="image/gift.jpg" alt="One sound crackers"></a>
+                <h3>Gift Boxes</h3>
+                <p>We have all varieties of gift boxes like baby gift box, magical gift box, vip gift box etc..</p>
+            </div>
+
+        </div>
+    </div>
+    <footer>
+    
+
+© 2010-2024 250 Mils LLC. All Rights Reserved.
+    </footer>
+    
+</body>
+</html>
